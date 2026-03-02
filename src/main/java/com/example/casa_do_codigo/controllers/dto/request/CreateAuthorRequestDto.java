@@ -8,6 +8,6 @@ public record CreateAuthorRequestDto(@NotBlank(message = REQUIRED) String name,
                                      @NotBlank(message = REQUIRED) @Email(message = INVALID) String email) {
 
     private final static String REQUIRED = "é obrigatório";
-    private final static String DESCRIPTION_LENGTH = "deve entre 1 e 400 caracteres";
+    private final static String DESCRIPTION_LENGTH = "deve ter entre 1 e 400 caracteres";
     private final static String INVALID = "inválido";
 }

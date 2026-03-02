@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS authors(
-	id serial,
+	id serial PRIMARY KEY,
 	name VARCHAR(255) NOT NULL,
 	email VARCHAR(100) NOT NULL UNIQUE,
 	description VARCHAR(400) NOT NULL,

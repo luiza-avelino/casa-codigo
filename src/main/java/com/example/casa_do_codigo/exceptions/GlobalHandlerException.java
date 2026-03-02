@@ -12,7 +12,7 @@ import java.util.List;
 public class GlobalHandlerException {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    private ProblemDetail handleInvalidBody(MethodArgumentNotValidException e) {
+    public ProblemDetail handleInvalidBody(MethodArgumentNotValidException e) {
         var pd = ProblemDetail.forStatus(400);
         pd.setTitle("Parametros inválidos");
 
@@ -25,7 +25,7 @@ public class GlobalHandlerException {
 
     @ExceptionHandler(EmailAlreadyInUseException.class)
     public ProblemDetail emailInUseException(EmailAlreadyInUseException e) {
-        var pd = ProblemDetail.forStatus(422);
+        var pd = ProblemDetail.forStatus(409);
         pd.setTitle("Email em uso");
         pd.setDetail(e.getMessage());
 

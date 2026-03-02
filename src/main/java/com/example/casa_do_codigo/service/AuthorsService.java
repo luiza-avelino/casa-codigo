@@ -1,13 +1,10 @@
 package com.example.casa_do_codigo.service;
 
 import com.example.casa_do_codigo.controllers.dto.request.CreateAuthorRequestDto;
-import com.example.casa_do_codigo.entites.AuthorsEntity;
+import com.example.casa_do_codigo.entites.AuthorEntity;
 import com.example.casa_do_codigo.exceptions.EmailAlreadyInUseException;
 import com.example.casa_do_codigo.repository.AuthorsRepository;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class AuthorsService {
@@ -18,20 +15,19 @@ public class AuthorsService {
         this.authorsRepository = authorsRepository;
     }
 
-    public AuthorsEntity create(CreateAuthorRequestDto body) throws EmailAlreadyInUseException {
+    public Long create(CreateAuthorRequestDto body) throws EmailAlreadyInUseException {
 
-        Optional<AuthorsEntity> emailExists = authorsRepository.findByEmail(body.email());
+        boolean emailExists = authorsRepository.existsByEmail(body.email().toLowerCase());
 
-        if(emailExists.isPresent()) {
+        if(emailExists) {
             throw new EmailAlreadyInUseException("Email já sendo usado por outro usuário.");
         }
 
-        AuthorsEntity author = new AuthorsEntity();
+        AuthorEntity author = new AuthorEntity();
         author.setName(body.name());
         author.setDescription(body.description());
         author.setEmail(body.email());
-        author.setCreatedAt(LocalDateTime.now());
 
-        return authorsRepository.save(author);
+        return authorsRepository.save(author).getId();
     }
 }

@@ -3,12 +3,14 @@ package com.example.casa_do_codigo.entites;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "authors")
-public class AuthorsEntity {
+public class AuthorEntity {
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,12 +27,14 @@ public class AuthorsEntity {
     private String email;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public AuthorsEntity() {
+    public AuthorEntity() {
     }
 
     public Long getId() {

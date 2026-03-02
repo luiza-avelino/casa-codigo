@@ -1,7 +1,6 @@
 package com.example.casa_do_codigo.controllers;
 
 import com.example.casa_do_codigo.controllers.dto.request.CreateAuthorRequestDto;
-import com.example.casa_do_codigo.entites.AuthorsEntity;
 import com.example.casa_do_codigo.service.AuthorsService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +21,8 @@ public class AuthorsController {
 
     @PostMapping
     public ResponseEntity<Void> createAuthor(@RequestBody @Valid CreateAuthorRequestDto body) {
-        AuthorsEntity createdAuthor = service.create(body);
+        Long authorId = service.create(body);
 
-        return ResponseEntity.created(URI.create("/authors/" + createdAuthor.getId())).build();
+        return ResponseEntity.created(URI.create("/authors/" + authorId)).build();
     }
 }
