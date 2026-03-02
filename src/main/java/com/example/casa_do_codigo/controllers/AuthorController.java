@@ -1,7 +1,7 @@
 package com.example.casa_do_codigo.controllers;
 
 import com.example.casa_do_codigo.controllers.dto.request.CreateAuthorRequestDto;
-import com.example.casa_do_codigo.service.AuthorsService;
+import com.example.casa_do_codigo.service.AuthorService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/authors")
-public class AuthorsController {
+public class AuthorController {
 
-    private final AuthorsService service;
+    private final AuthorService service;
 
-    public AuthorsController(AuthorsService service) {
+    public AuthorController(AuthorService service) {
         this.service = service;
     }
 
