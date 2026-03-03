@@ -20,7 +20,7 @@ public class AuthorService {
         boolean emailExists = authorsRepository.existsByEmail(body.email().toLowerCase());
 
         if(emailExists) {
-            throw new FieldAlreadyInUseException("Email já sendo usado por outro usuário.");
+            throw new FieldAlreadyInUseException("Email already being used for another user.");
         }
 
         AuthorEntity author = new AuthorEntity();

@@ -23,7 +23,7 @@ public class CategoryEntity {
 
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatetedAt;
+    private LocalDateTime updatedAt;
 
     public CategoryEntity() {
     }
@@ -52,11 +52,11 @@ public class CategoryEntity {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdatetedAt() {
-        return updatetedAt;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdatetedAt(LocalDateTime updatetedAt) {
-        this.updatetedAt = updatetedAt;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

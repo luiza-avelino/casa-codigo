@@ -16,7 +16,7 @@ public class CategoryService {
         this.repository = repository;
     }
 
-    public Long create(@Valid CreateCategoryDto categoryDto) {
+    public Long create(CreateCategoryDto categoryDto) {
         boolean categoryExists = repository.existsByName(categoryDto.name());
 
         if(categoryExists) {
