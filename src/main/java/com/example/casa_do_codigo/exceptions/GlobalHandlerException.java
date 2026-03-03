@@ -14,7 +14,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleInvalidBody(MethodArgumentNotValidException e) {
         var pd = ProblemDetail.forStatus(400);
-        pd.setTitle("Parametros inválidos");
+        pd.setTitle("Invalid Parameters");
 
         List<FieldErrorDto> errors = e.getFieldErrors()
                 .stream().map(error -> new FieldErrorDto(error.getField(), error.getDefaultMessage())).toList();
@@ -23,10 +23,10 @@ public class GlobalHandlerException {
         return pd;
     }
 
-    @ExceptionHandler(EmailAlreadyInUseException.class)
-    public ProblemDetail emailInUseException(EmailAlreadyInUseException e) {
+    @ExceptionHandler({FieldAlreadyInUseException.class})
+    public ProblemDetail handleFieldInUseException(FieldAlreadyInUseException e) {
         var pd = ProblemDetail.forStatus(409);
-        pd.setTitle("Email em uso");
+        pd.setTitle("Already being used");
         pd.setDetail(e.getMessage());
 
         return pd;
