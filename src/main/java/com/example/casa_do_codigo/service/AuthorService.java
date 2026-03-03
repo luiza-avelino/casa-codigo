@@ -2,7 +2,7 @@ package com.example.casa_do_codigo.service;
 
 import com.example.casa_do_codigo.controllers.dto.request.CreateAuthorRequestDto;
 import com.example.casa_do_codigo.entites.AuthorEntity;
-import com.example.casa_do_codigo.exceptions.EmailAlreadyInUseException;
+import com.example.casa_do_codigo.exceptions.FieldAlreadyInUseException;
 import com.example.casa_do_codigo.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +15,12 @@ public class AuthorService {
         this.authorsRepository = authorsRepository;
     }
 
-    public Long create(CreateAuthorRequestDto body) throws EmailAlreadyInUseException {
+    public Long create(CreateAuthorRequestDto body) throws FieldAlreadyInUseException {
 
         boolean emailExists = authorsRepository.existsByEmail(body.email().toLowerCase());
 
         if(emailExists) {
-            throw new EmailAlreadyInUseException("Email já sendo usado por outro usuário.");
+            throw new FieldAlreadyInUseException("Email já sendo usado por outro usuário.");
         }
 
         AuthorEntity author = new AuthorEntity();

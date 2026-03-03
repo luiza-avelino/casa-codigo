@@ -23,10 +23,10 @@ public class GlobalHandlerException {
         return pd;
     }
 
-    @ExceptionHandler(EmailAlreadyInUseException.class)
-    public ProblemDetail emailInUseException(EmailAlreadyInUseException e) {
+    @ExceptionHandler({FieldAlreadyInUseException.class})
+    public ProblemDetail FieldInUseException(FieldAlreadyInUseException e) {
         var pd = ProblemDetail.forStatus(409);
-        pd.setTitle("Email em uso");
+        pd.setTitle("Already being used");
         pd.setDetail(e.getMessage());
 
         return pd;
