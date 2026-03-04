@@ -2,12 +2,10 @@ package com.example.casa_do_codigo.controllers.dto.request;
 
 import jakarta.validation.constraints.*;
 
-public record CreateAuthorRequestDto(@NotBlank(message = REQUIRED) String name,
-                                     @NotBlank(message = REQUIRED)
-                                     @Size(min = 1, max = 400, message = DESCRIPTION_LENGTH) String description,
-                                     @NotBlank(message = REQUIRED) @Email(message = INVALID) String email) {
-
-    private final static String REQUIRED = "é obrigatório";
-    private final static String DESCRIPTION_LENGTH = "deve ter entre 1 e 400 caracteres";
-    private final static String INVALID = "inválido";
+public record CreateAuthorRequestDto(@NotBlank(message = "{field.required}")
+                                     String name,
+                                     @NotBlank(message = "{field.required}") @Size(min = 1, max = 400, message = "{field.minimum-max.characters}")
+                                     String description,
+                                     @NotBlank(message = "{field.required}") @Email(message = "{field.invalid}")
+                                     String email) {
 }
